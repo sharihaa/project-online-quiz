@@ -1,0 +1,129 @@
+/* Profile Container */
+.profile-container {
+    background-color: #ffffff; /* White background for the container */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 800px;
+    margin: 20px auto; /* Center the container */
+}
+
+/* Profile Details */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between fields */
+}
+
+.profile-details label {
+    font-weight: bold;
+    color: #630375; /* Purple label color */
+    margin-bottom: 5px;
+}
+
+.profile-details input,
+.profile-details textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #b97cda; /* Light purple border */
+    font-size: 14px;
+    background-color: #f9f2fd; /* Light background for inputs */
+    color: #333; /* Text color */
+    font-family: 'Times New Roman', Times, serif; /* Match font with the rest of the page */
+}
+
+.profile-details input:disabled,
+.profile-details textarea:disabled {
+    background-color: #f0f0f0; /* Light gray background for disabled fields */
+    color: #999; /* Gray text for disabled fields */
+    cursor: not-allowed;
+}
+
+
+.details-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.column {
+  flex: 1;
+}
+
+.column label,
+.column input,
+.column textarea {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-header h3 {
+  font-size: 24px;
+  color: #630375;
+}
+
+.profile-pic img {
+    width: 120px; /* Ensure width is equal to height */
+    height: 120px; /* Ensure height is equal to width */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fits within the circle */
+    border: 4px solid #b97cda; /* Add a border with light purple color */
+    margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.button-group button {
+  padding: 10px 24px;
+  font-weight: bold;
+  color: white;
+  background-color: #b97cda;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #630375;
+  transform: scale(1.05);
+}
+.profile-pic {
+  position: relative;
+  text-align: center;
+}
+
+.profile-pic input[type="file"] {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.profile-pic input[type="submit"] {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: #b97cda;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-pic input[type="submit"]:hover {
+  background-color: #630375;
+}
+

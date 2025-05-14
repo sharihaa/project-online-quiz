@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: #fbf7fc;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Header / Navbar */
+.navbar {
+    width: 100%;
+    background-color: #b97cda;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+    color: #630375;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    background-color: #fbf7fc;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-buttons button a {
+    color: #b97cda;
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.nav-buttons button:hover {
+    background-color: #630375;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Form Section */
+.form-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #630375;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    color: #630375;
+    font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b97cda;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+form input[type="submit"],
+form input[type="reset"] {
+    background-color: #b97cda;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+form input[type="submit"]:hover,
+form input[type="reset"]:hover {
+    background-color: #630375;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-buttons {
+        margin-top: 10px;
+    }
+}

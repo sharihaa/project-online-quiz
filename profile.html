@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">QUIZ APP</a>
+        </div>
+        <div class="nav-buttons">
+            <button><a href="homepage.html">HOME</a></button>
+            <button><a href="#">LOG OUT</a></button>
+        </div>
+    </nav>
+
+   <div class="main-content">
+    <div class="sidebar">
+        <ul>
+            <li><a href="teacher.php">Create Question</a></li>
+            <li><a href="#">Check Scores</a></li>
+            <li><a href="#">Certificate Generate</a></li>
+        </ul>
+    </div>
+
+    <!-- Profile container -->
+    <div class="profile-container">
+        <form method="post" action="upload.php" enctype="multipart/form-data">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <h3>Hello,</h3>
+                <div class="profile-pic">
+                    <img id="preview" src="default-user.png" alt="Profile Picture">
+                    <input type="file" id="fileInput" name="myfile" accept="image/*" style="display: none;"> <!-- Hidden initially -->
+                    <input type="submit" id="uploadBtn" value="Upload" style="display: none;"> <!-- Hidden initially -->
+                </div>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <div class="details-columns">
+                    <div class="column left">
+                        <label>First Name:</label>
+                        <input type="text" value="John" disabled>
+
+                        <label>Last Name:</label>
+                        <input type="text" value="Doe" disabled>
+
+                        <label>Username:</label>
+                        <input type="text" value="johndoe" disabled>
+
+                        <label>Email:</label>
+                        <input type="email" value="john@example.com" disabled>
+                    </div>
+
+                    <div class="column right">
+                        <label>Date of Birth:</label>
+                        <input type="date" value="1990-01-01" disabled>
+
+                        <label>Subject Taught:</label>
+                        <input type="text" value="MATHEMATICS" disabled>
+
+                        <label>School or Institution:</label>
+                        <textarea disabled>ABC High School</textarea>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" id="editBtn">Edit Profile</button>
+                    <button type="button" id="saveBtn">Save Profile</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <script>
+        const editBtn = document.getElementById('editBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const inputs = document.querySelectorAll('.profile-details input, .profile-details textarea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const preview = document.getElementById('preview');
+
+        // Initially disable all inputs and hide file input and upload button
+        inputs.forEach(input => input.disabled = true);
+        fileInput.style.display = 'none';
+        uploadBtn.style.display = 'none';
+
+        // Enable editing when "Edit Profile" is clicked
+        editBtn.addEventListener('click', () => {
+            inputs.forEach(input => input.disabled = false);
+            fileInput.style.display = 'block'; // Show file input
+            uploadBtn.style.display = 'block'; // Show upload button
+        });
+
+        // Disable editing when "Save Profile" is clicked
+        saveBtn.addEventListener('click', () => {
+            inputs.forEach(input => input.disabled = true);
+            fileInput.style.display = 'none'; // Hide file input
+            uploadBtn.style.display = 'none'; // Hide upload button
+            alert('Profile saved!');
+        });
+
+        // Preview the uploaded profile picture
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result; // Update the preview image
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

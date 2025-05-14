@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="../css/login.css">
+  <style>
+    body {
+      background: #1e1e2f;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+
+    h2 { margin-bottom: 15px; }
+
+    .form-section, .quiz-box, .score-box {
+      background-color: #bfb5f0;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 20px auto;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .form-section h2, .score-box h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    input, select, button {
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #7f8ff4;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(127, 143, 244, 0.2);
+    }
+
+    button {
+      background: #07156c;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #6a78d1;
+    }
+
+    .option-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .option {
+      background: #3a3a57;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option:hover { background: #4f4f77; }
+    .option.correct { background-color: #4CAF50; }
+    .option.wrong { background-color: #f44336; }
+
+    .btn-next, .btn-restart {
+      background: #00b894;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .btn-restart { background: #0984e3; }
+    .timer {
+      text-align: right;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-section" id="formSection">
+  <h2>Create Your Question</h2>
+  <input type="text" id="qInput" placeholder="Enter question" />
+  <input type="text" id="optA" placeholder="Option A" />
+  <input type="text" id="optB" placeholder="Option B" />
+  <input type="text" id="optC" placeholder="Option C" />
+  <input type="text" id="optD" placeholder="Option D" />
+  <select id="correctAnswer">
+    <option value="" disabled selected>Select correct answer</option>
+    <option value="A">Option A</option>
+    <option value="B">Option B</option>
+    <option value="C">Option C</option>
+    <option value="D">Option D</option>
+  </select>
+  <button onclick="addQuestion()">Add Question</button>
+  <button onclick="startQuiz()">Start Quiz</button>
+</div>
+
+<div class="quiz-box" id="quizBox" style="display:none;">
+  <div class="timer" id="timer">Time: 15</div>
+  <div class="question" id="question">Question goes here</div>
+  <ul class="option-list" id="optionList"></ul>
+  <button class="btn-next" id="nextBtn">Next</button>
+</div>
+
+<div class="score-box" id="scoreBox" style="display:none;">
+  <h2>Your Score: <span id="scoreText"></span></h2>
+  <button class="btn-restart" onclick="restartQuiz()">Restart</button>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+  <a href="homepage.html" style="text-decoration: none;">
+    <button style="background-color: #07156c; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+      Back to Homepage
+    </button>
+  </a>
+</div>
+
+<script>
+  const userQuestions = [];
+  let currentIndex = 0;
+  let score = 0;
+  let timer;
+  let timeLeft = 15;
+
+  const questionEl = document.getElementById("question");
+  const optionListEl = document.getElementById("optionList");
+  const nextBtn = document.getElementById("nextBtn");
+  const timerEl = document.getElementById("timer");
+  const quizBox = document.getElementById("quizBox");
+  const scoreBox = document.getElementById("scoreBox");
+  const scoreText = document.getElementById("scoreText");
+  const formSection = document.getElementById("formSection");
+
+  function addQuestion() {
+    const question = document.getElementById("qInput").value.trim();
+    const A = document.getElementById("optA").value.trim();
+    const B = document.getElementById("optB").value.trim();
+    const C = document.getElementById("optC").value.trim();
+    const D = document.getElementById("optD").value.trim();
+    const correct = document.getElementById("correctAnswer").value;
+
+    if (!question || !A || !B || !C || !D || !correct) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    userQuestions.push({
+      question,
+      options: { A, B, C, D },
+      answer: { key: correct, text: { A, B, C, D }[correct] }
+    });
+
+    // Clear inputs
+    document.getElementById("qInput").value = "";
+    document.getElementById("optA").value = "";
+    document.getElementById("optB").value = "";
+    document.getElementById("optC").value = "";
+    document.getElementById("optD").value = "";
+    document.getElementById("correctAnswer").value = "";
+    alert("Question added!");
+  }
+
+  function startQuiz() {
+    if (userQuestions.length === 0) {
+      alert("Add at least one question!");
+      return;
+    }
+    formSection.style.display = "none";
+    quizBox.style.display = "block";
+    showQuestion();
+    startTimer();
+  }
+
+  function showQuestion() {
+    const q = userQuestions[currentIndex];
+    questionEl.textContent = q.question;
+    optionListEl.innerHTML = "";
+
+    Object.entries(q.options).forEach(([key, text]) => {
+      const li = document.createElement("li");
+      li.className = "option";
+      li.textContent = text;
+      li.onclick = () => selectOption(li, q.answer.text);
+      optionListEl.appendChild(li);
+    });
+
+    nextBtn.style.display = "none";
+  }
+
+  function selectOption(selected, correctAnswer) {
+    clearInterval(timer);
+    const options = document.querySelectorAll(".option");
+    options.forEach(option => {
+      option.onclick = null;
+      if (option.textContent === correctAnswer) {
+        option.classList.add("correct");
+      } else {
+        option.classList.add("wrong");
+      }
+    });
+
+    if (selected.textContent === correctAnswer) {
+      score++;
+    }
+
+    nextBtn.style.display = "block";
+  }
+
+  nextBtn.onclick = () => {
+    currentIndex++;
+    if (currentIndex < userQuestions.length) {
+      timeLeft = 15;
+      showQuestion();
+      startTimer();
+    } else {
+      showScore();
+    }
+  };
+
+  function startTimer() {
+    timerEl.textContent = `Time: ${timeLeft}`;
+    timer = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = `Time: ${timeLeft}`;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        autoSelect();
+      }
+    }, 1000);
+  }
+
+  function autoSelect() {
+    const q = userQuestions[currentIndex];
+    const options = document.querySelectorAll(".option");
+    options.forEach(option => {
+      option.onclick = null;
+      if (option.textContent === q.answer.text) {
+        option.classList.add("correct");
+      }
+    });
+    nextBtn.style.display = "block";
+  }
+
+  function showScore() {
+    quizBox.style.display = "none";
+    scoreBox.style.display = "block";
+    scoreText.textContent = `${score} / ${userQuestions.length}`;
+  }
+
+  function restartQuiz() {
+    currentIndex = 0;
+    score = 0;
+    timeLeft = 15;
+    quizBox.style.display = "none";
+    scoreBox.style.display = "none";
+    formSection.style.display = "block";
+    userQuestions.length = 0; // Clear previous questions
+  }
+</script>
+
+</body>
+</html>

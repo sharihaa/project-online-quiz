@@ -1,0 +1,133 @@
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.navbar {
+    background-color: #b97cda;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+    color: #630375;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    background-color: #fbf7fc;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.nav-buttons button a {
+    color: #b97cda;
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.nav-buttons button:hover {
+    background-color: #630375; /* Darker purple for hover */
+    color: white; /* Change text color to white */
+    transform: scale(1.05); /* Slightly enlarge the button */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.main-content {
+    display: flex;
+    height: calc(100vh - 60px); /* 60px for navbar */
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #e8d5f3;
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar li {
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: #630375;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.content-area {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    gap: 40px;
+}
+
+.image-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image-stack img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.text-block {
+    max-width: 500px;
+}
+
+.text-block h2 {
+    font-size: 24px;
+    color: #630375;
+    margin-bottom: 10px;
+}
+
+.text-block p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.text-block button {
+    background-color: #b97cda;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.text-block button:hover {
+    background-color: #630375; /* Darker purple for hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+    transition: all 0.3s ease; /* Smooth transition */
+}
