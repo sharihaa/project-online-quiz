@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRATION
     </title>
-    <link rel="stylesheet" href="homepage.css">
-    <link rel="stylesheet" href="signin.css">
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/signin.css">
 
    
 </head>
 <div class="form-container">
     <h2>REGISTER</h2>
     <form action="../php/validate_signin.php" method="POST" onsubmit="return validateForm();">
+        <label for="role">Register As:</label>
+        <select id="role" name="role" required>
+            <option value="admin">Admin</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+        </select>
+
         <label for="fname">First Name:</label>
         <input type="text" id="fname" name="fname" required>
 
@@ -31,13 +38,7 @@
         <label for="dob">Date of Birth:</label>
         <input type="date" id="dob" name="dob" required>
 
-        <label for="class">Subject Taught:</label>
-        <select id="skills" name="skills" required>
-            <option value="sql">MATHEMATICS</option>
-            <option value="c++">BIOLOGY</option>
-            <option value="java">ENGLISH</option>
-            <option value="python">OTHERS</option>
-        </select>
+       
 
         <label for="Institution">School or Institution Name:</label>
         <textarea id="school" name="school"></textarea>
