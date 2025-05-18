@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <button type="submit">Login</button>
     </form>
 
-    <p>Don't have an account? <a href="signin.php">Register here</a></p>
+    <p>Don't have an account? <a href="signin.html">Register here</a></p>
     <p><a href="forgot_password.php">Forgot Password?</a></p>
   </div>
 
