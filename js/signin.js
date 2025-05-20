@@ -17,28 +17,24 @@ function validateForm() {
     const errors = [];
 
     // Retrieve form inputs
-    const id = document.getElementById("id").value.trim();
+    const role = document.getElementById("role").value.trim();
     const fname = document.getElementById("fname").value.trim();
     const lname = document.getElementById("lname").value.trim();
-    const departments = document.querySelectorAll('input[name="department"]:checked');
-    const dob = document.getElementById("dob").value.trim();
-    const gender = document.querySelector('input[name="gender"]:checked');
+    const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
-    const skills = document.getElementById("skills").value.trim();
-    const address = document.getElementById("address").value.trim();
+    const dob = document.getElementById("dob").value.trim();
+    const school = document.getElementById("school").value.trim();
 
     // Validate required fields
-    if (!id) errors.push("ID is required.");
+    if (!role) errors.push("Role is required.");
     if (!fname) errors.push("First name is required.");
     if (!lname) errors.push("Last name is required.");
-    if (departments.length === 0) errors.push("At least one department must be selected.");
-    if (!dob) errors.push("Date of birth is required.");
-    if (!gender) errors.push("Gender is required.");
+    if (!username) errors.push("Username is required.");
     if (!email || !validateEmail(email)) errors.push("A valid email is required.");
     if (!password) errors.push("Password is required.");
-    if (!skills) errors.push("Skills are required.");
-    if (!address) errors.push("Address is required.");
+    if (!dob) errors.push("Date of birth is required.");
+    if (!school) errors.push("School or Institution Name is required.");
 
     // Display errors or submit the form
     if (errors.length > 0) {
@@ -46,7 +42,6 @@ function validateForm() {
         return false; // Prevent form submission
     }
 
-    alert("Form submitted successfully!");
     return true; // Allow form submission
 }
 

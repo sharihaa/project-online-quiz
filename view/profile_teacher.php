@@ -38,7 +38,7 @@ if (!$user) {
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="#">QUIZ APP</a>
+            <a href="landingpage.html">QUIZ APP</a>
         </div>
         <div class="nav-buttons">
             <button><a href="homepage_teacher.php">HOME</a></button>
@@ -57,43 +57,39 @@ if (!$user) {
 
         <!-- Profile container -->
         <div class="profile-container">
-            <form method="post" action="update_profile.php" enctype="multipart/form-data">
-                <!-- Profile Header -->
-                <div class="profile-header">
-                    <h3>Hello, <?php echo htmlspecialchars($user['fname']); ?></h3>
-                    <div class="profile-pic">
-                        <img id="preview" src="<?php echo isset($user['profile_pic']) ? htmlspecialchars($user['profile_pic']) : 'default-user.png'; ?>" alt="Profile Picture">
-                        <input type="file" id="fileInput" name="myfile" accept="image/*" style="display: none;">
-                        <input type="submit" id="uploadBtn" value="Upload" style="display: none;">
-                    </div>
+            <div class="profile-header">
+                <h3>Hello, <?php echo htmlspecialchars($user['fname']); ?></h3>
+                <div class="profile-pic">
+                    <img id="preview" src="<?php echo htmlspecialchars($profilePic); ?>" alt="Profile Picture">
+                    <!-- Upload form, hidden by default -->
+                    <form method="post" action="upload.php" enctype="multipart/form-data" class="upload-form" style="display:none; margin-top:10px;">
+                        <input type="file" id="fileInput" name="myfile" accept="image/*" required>
+                        <button type="submit" id="uploadBtn">Upload</button>
+                    </form>
                 </div>
+            </div>
 
-                <!-- Profile Details -->
+            <!-- Main Profile Info Form (separate) -->
+            <form method="post" action="update_profile.php" enctype="multipart/form-data">
                 <div class="profile-details">
                     <div class="details-columns">
                         <div class="column left">
                             <label>First Name:</label>
                             <input type="text" name="fname" value="<?php echo htmlspecialchars($user['fname']); ?>" disabled>
-
                             <label>Last Name:</label>
                             <input type="text" name="lname" value="<?php echo htmlspecialchars($user['lname']); ?>" disabled>
-
                             <label>Username:</label>
                             <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" disabled>
-
                             <label>Email:</label>
                             <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" disabled>
                         </div>
-
                         <div class="column right">
                             <label>Date of Birth:</label>
                             <input type="date" name="dob" value="<?php echo htmlspecialchars($user['dob']); ?>" disabled>
-
                             <label>School or Institution:</label>
                             <textarea name="school" disabled><?php echo htmlspecialchars($user['school']); ?></textarea>
                         </div>
                     </div>
-
                     <div class="button-group">
                         <button type="button" id="editBtn">Edit Profile</button>
                         <button type="submit" id="saveBtn" style="display: none;">Save Profile</button>

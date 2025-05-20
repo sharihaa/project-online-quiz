@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller = new LoginController();
     $result = $controller->handleLogin($username, $password, $role);
     if ($result !== true) {
-        $error = $result; // e.g. "Invalid credentials"
+        $error = $result; 
     }
 }
+
 ?>
 
 
@@ -24,8 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <link rel="stylesheet" href="login.css" />
+  
 </head>
 <body>
+   <nav class="navbar">
+        <div class="logo"><a href="landingpage.html">QUIZ APP</a></div>
+       
+    </nav>
   <div class="login-container">
     <h2>Login Form</h2>
 
@@ -55,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>Don't have an account? <a href="signin.html">Register here</a></p>
     <p><a href="forgot_password.php">Forgot Password?</a></p>
   </div>
+<?php if (!empty($error)) : ?>
+  <p class="error-message"><?= htmlspecialchars($error) ?></p>
+<?php endif; ?>
 
   <script src="../js/login.js"></script>
 </body>

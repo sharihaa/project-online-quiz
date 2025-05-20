@@ -70,7 +70,7 @@ if (isset($_POST['save_quiz'])) {
 
       <form method="post" style="margin-top:30px;">
         <a href="teacher.php"><button type="button" class="back-btn">Back to creating questions</button></a>
-        <a href="../view/homepage_teacher.php"> <button type="submit" name="save_quiz" class="back-btn" style="background:#27ae60;">Save Quiz</button></a>
+        <a href="homepage_teacher.php"> <button type="submit" name="save_quiz" class="back-btn" style="background:#27ae60;">Save Quiz</button></a>
         <button type="submit" name="reset_questions" class="back-btn" style="background:#e74c3c;">Reset All Questions</button>
       </form>
     </div>

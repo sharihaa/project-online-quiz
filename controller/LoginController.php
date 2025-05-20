@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../model/UserModel.php';
-session_start(); // ✅ Only here, at the top
+session_start();
 
 class LoginController {
     private $userModel;

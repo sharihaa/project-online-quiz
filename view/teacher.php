@@ -63,8 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset_questions'])) 
     <div class="sidebar">
         <ul>
             <li><a href="teacher.php">Create Question</a></li>
-            <li><a href="#">Check Scores</a></li>
-            <li><a href="#">Certificate Generate</a></li>
+                <li><a href="question_browser.php">Check Questions</a></li>
+                <li><a href="preview.php">Preview Questions</a></li>
+                <li><a href="quiz_history.php">Check Scores</a></li>
+                <li><a href="generate_certificate.php">Certificate Generate</a></li>
         </ul>
     </div>
     <div class="container">
