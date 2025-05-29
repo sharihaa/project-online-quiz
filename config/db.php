@@ -7,20 +7,13 @@ class Database {
     public $conn;
 
     public function connect() {
-        $this->conn = null;
+        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
 
-        try {
-            $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
-                $this->username,
-                $this->password
-            );
-            // Set error mode to exception
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
-            echo "Connection error: " . $e->getMessage();
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
         }
 
         return $this->conn;
     }
 }
+?>

@@ -1,19 +1,18 @@
-<!-- File: preview.html -->
+
 <?php
 session_start();
 $questions = $_SESSION['questions'] ?? [];
 
-// Handle reset
+
 if (isset($_POST['reset_questions'])) {
     $_SESSION['questions'] = [];
     header("Location: preview.php");
     exit;
 }
 
-// Handle save (simulate saving, then redirect)
+
 if (isset($_POST['save_quiz'])) {
-    // Here you would typically save the quiz to the database
-    // For now, just clear the session and redirect
+   
     $_SESSION['questions'] = [];
     header("Location: homepage_teacher.php?saved=1");
     exit;
@@ -30,7 +29,7 @@ if (isset($_POST['save_quiz'])) {
 <body>
   <nav class="navbar">
       <div class="logo">
-          <a href="#">QUIZ APP</a>
+          <a href="homepage_teacher.php">QUIZ APP</a>
       </div>
       <div class="nav-buttons">
           <button><a href="../view/homepage_teacher.php">HOME</a></button>
@@ -41,8 +40,11 @@ if (isset($_POST['save_quiz'])) {
     <div class="sidebar">
         <ul>
             <li><a href="teacher.php">Create Question</a></li>
-            <li><a href="#">Check Scores</a></li>
-            <li><a href="#">Certificate Generate</a></li>
+                <li><a href="question_browser.php">Check Questions</a></li>
+                <li><a href="preview.php">Preview Questions</a></li>
+                <li><a href="quiz_history.php">Check Scores</a></li>
+                <li><a href="download.php">Import Questions</a></li>
+                <li><a href="generate_certificate.php">Certificate Generate</a></li>
         </ul>
     </div>
     <div class="quiz-container">

@@ -17,6 +17,9 @@ class LoginController {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
 
+            
+            setcookie('status', 'true', time() + 3000, '/');
+
             switch ($role) {
                 case 'admin':
                     header('Location: ../view/homepage_admin.php');

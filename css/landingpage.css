@@ -16,6 +16,10 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 0; 
+    width: 100%;
+    z-index: 1000; 
 }
 
 .logo a {
@@ -131,3 +135,81 @@ body, html {
     transform: scale(1.05); /* Slightly enlarge the button */
     transition: all 0.3s ease; /* Smooth transition */
 }
+ .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        #section1 {
+            background-color: #f4f7fb;
+        }
+        #section2 {
+            background-color: #ffffff;
+        }
+        #section3 {
+            background-color: #e8f0fe;
+        }
+        .content-area {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            gap: 40px;
+        }
+        .image-stack img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .text-block {
+            max-width: 600px;
+        }
+        .text-block h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .text-block p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .feature-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 1rem;
+            color: #555;
+        }

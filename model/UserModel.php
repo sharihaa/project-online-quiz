@@ -11,43 +11,54 @@ class UserModel {
 
     public function registerUser($data) {
         $query = "INSERT INTO users (role, fname, lname, username, email, password, dob, school)
-                  VALUES (:role, :fname, :lname, :username, :email, :password, :dob, :school)";
-        
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
         $stmt = $this->conn->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->conn->error);
+        }
+
         $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $stmt->bindParam(':role', $data['role']);
-        $stmt->bindParam(':fname', $data['fname']);
-        $stmt->bindParam(':lname', $data['lname']);
-        $stmt->bindParam(':username', $data['username']);
-        $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', $hashedPassword);
-        $stmt->bindParam(':dob', $data['dob']);
-        $stmt->bindParam(':school', $data['school']);
+        $stmt->bind_param(
+            "ssssssss", 
+            $data['role'], 
+            $data['fname'], 
+            $data['lname'], 
+            $data['username'], 
+            $data['email'], 
+            $hashedPassword, 
+            $data['dob'], 
+            $data['school']
+        );
 
         return $stmt->execute();
     }
 
-  public function loginUser($username, $password, $role) {
-    $query = "SELECT * FROM users WHERE username = :username AND role = :role LIMIT 1";
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':role', $role);
-    $stmt->execute();
+    public function loginUser($username, $password, $role) {
+        $query = "SELECT * FROM users WHERE username = ? AND role = ? LIMIT 1";
+        $stmt = $this->conn->prepare($query);
 
-    if ($stmt->rowCount() > 0) {
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (password_verify($password, $user['password'])) {
-            return $user;
-        } else {
-            echo "❌ Password doesn't match.";
+        if (!$stmt) {
+            die("Prepare failed: " . $this->conn->error);
         }
-    } else {
-        echo "❌ No user found with that username and role.";
+
+        $stmt->bind_param("ss", $username, $role);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['password'])) {
+                return $user;
+            } else {
+                echo "❌ Password doesn't match.";
+            }
+        } else {
+            echo "❌ No user found with that username and role.";
+        }
+
+        return false;
     }
-
-    return false;
-}
-
-
 }

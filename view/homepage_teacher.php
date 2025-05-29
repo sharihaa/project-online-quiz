@@ -1,18 +1,18 @@
 <?php
 session_start();
 
-// Redirect to login if not authenticated as a teacher
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'teacher') {
     header("Location: login.php");
     exit;
 }
 
-// Initialize recent activities array if not set
+
 if (!isset($_SESSION['recent_activities'])) {
     $_SESSION['recent_activities'] = [];
 }
 
-// Example: Log a successful quiz save
+
 if (isset($_GET['saved'])) {
     $activity = [
         'message' => 'Quiz saved successfully!',
@@ -20,7 +20,7 @@ if (isset($_GET['saved'])) {
     ];
     $_SESSION['recent_activities'][] = $activity;
 
-    // Keep only the last 10 activities
+   
     if (count($_SESSION['recent_activities']) > 10) {
         array_shift($_SESSION['recent_activities']);
     }
@@ -32,30 +32,11 @@ if (isset($_GET['saved'])) {
     <meta charset="UTF-8">
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="../css/homepage.css">
-    <style>
-        /* Additional styling for the activities table */
-        .activities-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .activities-table th, .activities-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .activities-table th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-        .alert-success {
-            color: green;
-            margin: 10px 0;
-        }
-    </style>
+    
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo"><a href="#">QUIZ APP</a></div>
+        <div class="logo"><a href="homepage_teacher.php">QUIZ APP</a></div>
         <div class="nav-buttons">
             <button><a href="profile_teacher.php">PROFILE</a></button>
             <button><a href="logout.php">LOG OUT</a></button>
@@ -69,6 +50,7 @@ if (isset($_GET['saved'])) {
                 <li><a href="question_browser.php">Check Questions</a></li>
                 <li><a href="preview.php">Preview Questions</a></li>
                 <li><a href="quiz_history.php">Check Scores</a></li>
+                <li><a href="download.php">Import Questions</a></li>
                 <li><a href="generate_certificate.php">Certificate Generate</a></li>
             </ul>
         </div>
@@ -79,7 +61,7 @@ if (isset($_GET['saved'])) {
             <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
             <p>Manage your quizzes and evaluate student performance.</p>
 
-            <!-- Recent Activities Table -->
+           
             <h3>Recent Activities</h3>
             <table class="activities-table">
                 <thead>
@@ -93,7 +75,7 @@ if (isset($_GET['saved'])) {
                     <?php
                     if (!empty($_SESSION['recent_activities'])):
                         $serial = 1;
-                        // Display activities in reverse order (most recent first)
+                        
                         foreach (array_reverse($_SESSION['recent_activities']) as $activity):
                     ?>
                     <tr>

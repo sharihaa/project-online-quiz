@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="../css/landingpage.css">
+    
 </head>
 <body>
     <nav class="navbar">
@@ -17,23 +18,69 @@
         </div>
     </nav>
 
-    <div class="content-area">
-        <div class="image-stack">
-            <img src="11.jpg" alt="Quiz Screenshot 1">
-            <img src="12.jpg" alt="Quiz Screenshot 2">
-            <img src="13.jpg" alt="Quiz Screenshot 3">
-        </div>
-        <div class="text-block">
-            <h2>Effortless Quiz Creation for Modern Educators</h2>
-            <p>
-                Empower your teaching with our all-in-one quiz maker app—designed to save time and simplify assessments.
-                Easily create, manage, and share quizzes with just a few clicks.
-                Track student performance with smart analytics and gain insights that help you teach better.
-                No more manual grading or spreadsheet headaches—just smarter, faster teaching.
-                Join the future of education today.
-            </p>
-            <button onclick="location.href='student.php'">Join Quiz with Code</button>
+    <div id="section1" class="section">
+        <div class="content-area">
+            <div class="image-stack">
+                <img src="11.jpg" alt="Quiz Screenshot 1">
+                <img src="12.jpg" alt="Quiz Screenshot 2">
+                <img src="13.jpg" alt="Quiz Screenshot 3">
+            </div>
+            <div class="text-block">
+                <h2>Effortless Quiz Creation for Modern Educators</h2>
+                <p>
+                    Empower your teaching with our all-in-one quiz maker app—designed to save time and simplify assessments.
+                    Easily create, manage, and share quizzes with just a few clicks.
+                    Track student performance with smart analytics and gain insights that help you teach better.
+                    No more manual grading or spreadsheet headaches—just smarter, faster teaching.
+                    Join the future of education today.
+                </p>
+                <button class="cta-button" onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth' })">Discover Features</button>
+            </div>
         </div>
     </div>
+
+    <div id="section2" class="section">
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Easy Quiz Creation</h3>
+                <p>Create engaging quizzes in minutes with our intuitive drag-and-drop interface.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Smart Analytics</h3>
+                <p>Track student progress with detailed reports and actionable insights.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Seamless Sharing</h3>
+                <p>Share quizzes with students via unique codes or direct links, hassle-free.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Mobile-Friendly</h3>
+                <p>Access and take quizzes on any device, anytime, anywhere.</p>
+            </div>
+            <button class="cta-button" onclick="document.getElementById('section3').scrollIntoView({ behavior: 'smooth' })">Get Started Now</button>
+        </div>
+    </div>
+
+    <div id="section3" class="section">
+        <div class="text-block">
+            <h2>Join the Quiz Revolution</h2>
+            <p>
+                Ready to transform your teaching experience? Start creating quizzes today and see the difference.
+                Our platform is built for educators who value efficiency and impact.
+            </p>
+            <button class="cta-button" onclick="location.href='teacher.php'">Make a demo quiz question!</button>
+            <button class="cta-button" onclick="document.getElementById('section1').scrollIntoView({ behavior: 'smooth' })">Back to Top</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (e.target.closest('button').querySelector('a')) {
+                    return; 
+                }
+            });
+        });
+    </script>
 </body>
 </html>

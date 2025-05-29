@@ -59,7 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <p>Don't have an account? <a href="signin.html">Register here</a></p>
-    <p><a href="forgot_password.php">Forgot Password?</a></p>
+        <p>Forgot Password? <a href="forgot_password.html">change here!</a></p>
+
+
+    
   </div>
 <?php if (!empty($error)) : ?>
   <p class="error-message"><?= htmlspecialchars($error) ?></p>

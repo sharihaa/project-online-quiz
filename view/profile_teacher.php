@@ -13,11 +13,16 @@ $db = new Database();
 $conn = $db->connect();
 
 // Fetch user data
+// Fetch user data using MySQLi
 $user_id = $_SESSION['user_id'];
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = :id AND role = 'teacher'");
-$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND role = 'teacher'");
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+// Set default profile picture
+$profilePic = !empty($user['profile_pic']) ? 'uploads/' . $user['profile_pic'] : 'default-user.png';
 
 // Redirect if user not found or not a teacher
 if (!$user) {
@@ -49,9 +54,12 @@ if (!$user) {
     <div class="main-content">
         <div class="sidebar">
             <ul>
-                <li><a href="teacher.php">Create Question</a></li>
-                <li><a href="#">Check Scores</a></li>
-                <li><a href="#">Certificate Generate</a></li>
+               <li><a href="teacher.php">Create Question</a></li>
+                <li><a href="question_browser.php">Check Questions</a></li>
+                <li><a href="preview.php">Preview Questions</a></li>
+                <li><a href="quiz_history.php">Check Scores</a></li>
+                <li><a href="download.php">Import Questions</a></li>
+                <li><a href="generate_certificate.php">Certificate Generate</a></li>
             </ul>
         </div>
 

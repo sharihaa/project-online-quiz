@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset_questions'])) 
 <body>
   <nav class="navbar">
       <div class="logo">
-          <a href="#">QUIZ APP</a>
+          <a href="homepage_teacher.php">QUIZ APP</a>
       </div>
       <div class="nav-buttons">
           <button><a href="homepage_teacher.php">HOME</a></button>
@@ -62,10 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset_questions'])) 
   <div class="main-content">
     <div class="sidebar">
         <ul>
-            <li><a href="teacher.php">Create Question</a></li>
+           <li><a href="teacher.php">Create Question</a></li>
                 <li><a href="question_browser.php">Check Questions</a></li>
                 <li><a href="preview.php">Preview Questions</a></li>
                 <li><a href="quiz_history.php">Check Scores</a></li>
+                <li><a href="download.php">Import Questions</a></li>
                 <li><a href="generate_certificate.php">Certificate Generate</a></li>
         </ul>
     </div>
@@ -104,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset_questions'])) 
         <button type="submit">Add Question</button>
         <button type="submit" name="reset_questions" style="background:#e74c3c;color:#fff;">Reset All Questions</button>
         <a href="question_browser.php"><button type="button">Go to Question Browser</button></a>
-        <a href="tag_manager.php"><button type="button">Go to Tag Manager</button></a>
         <a href="preview.php"><button type="button">Preview Quiz</button></a>
       </form>
     </div>

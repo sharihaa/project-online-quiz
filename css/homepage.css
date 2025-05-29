@@ -84,3 +84,20 @@ body {
     padding: 50px;
     text-align: center;
 }
+ .activities-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .activities-table th, .activities-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .activities-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .alert-success {
+            color: green;
+            margin: 10px 0;
+        }
