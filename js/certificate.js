@@ -30,33 +30,6 @@ function generateCertificate() {
 
     // Description
     ctx.font = '20px Arial';
-    ctx.fillText('For completing the Awesome Test!', canvas.width / 2, 350);
+    ctx.fillText('For completing the Test!', canvas.width / 2, 350);
 
-    // Load logo
-    const logo = new Image();
-    logo.src = 'https://via.placeholder.com/100?text=Logo';
-    logo.onload = () => {
-        ctx.drawImage(logo, 50, 50, 100, 100);
-        
-        // Load signature
-        const signature = new Image();
-        signature.src = 'https://via.placeholder.com/150x50?text=Signature';
-        signature.onload = () => {
-            ctx.drawImage(signature, canvas.width - 200, canvas.height - 100, 150, 50);
-            
-            // Generate unique ID and verification link
-            const uniqueId = Math.random().toString(36).substring(2, 10);
-            const verifyLink = `verify.php?id=${uniqueId}`;
-            document.getElementById('verifyLink').innerHTML = 
-                `Verify your certificate at: <a href="${verifyLink}">${verifyLink}</a>`;
-            
-            // Send data to PHP (simulated)
-            saveCertificate(uniqueId, name);
-        };
-    };
-}
-
-function saveCertificate(id, name) {
-    // In a real app, this would send data to PHP via AJAX
-    console.log(`Certificate saved with ID: ${id}, Name: ${name}`);
 }
