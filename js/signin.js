@@ -32,8 +32,13 @@ function validateForm() {
     if (!lname) errors.push("Last name is required.");
     if (!username) errors.push("Username is required.");
     if (!email || !validateEmail(email)) errors.push("A valid email is required.");
-    if (!password) errors.push("Password is required.");
-    if (!dob) errors.push("Date of birth is required.");
+   if (!password || !validatePassword(password)) {
+    errors.push("Password must be at least 8 characters long, include a lowercase letter, an uppercase letter, and a number.");
+    }
+
+    if (!dob || !isAdult(dob)) {
+    errors.push("You must be at least 18 years old.");
+    }
     if (!school) errors.push("School or Institution Name is required.");
 
     // Display errors or submit the form
@@ -49,4 +54,20 @@ function validateForm() {
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+}
+function validatePassword(password) {
+    // At least 8 characters, 1 uppercase, 1 lowercase, 1 digit
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return re.test(password);
+}
+
+function isAdult(dob) {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        return age - 1 >= 18;
+    }
+    return age >= 18;
 }
